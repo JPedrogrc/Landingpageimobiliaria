@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  
+  <title>Douran Imóveis | Do Primeiro Lar ao Alto Padrão em Manaus</title>
+  <meta name="description" content="Casas, coberturas e apartamentos de R$ 150 mil ao alto padrão em Manaus. Tour virtual 360°, simulação de financiamento e atendimento VIP no WhatsApp." />
+  <meta name="keywords" content="imobiliária manaus, imóveis manaus, ponta negra, adrianópolis, vieiralves, casas condomínio, tour virtual imobiliária" />
+  
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Douran Imóveis | Encontre o Imóvel dos Seus Sonhos" />
+  <meta property="og:description" content="Tour virtual 360° em alta definição, simulação de parcelas e as melhores opções de Manaus." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Fontes Google (Playfair Display + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos CSS Organizados em Pastas -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Bibliotecas Externas (GSAP, Confetti, Lucide Icons) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER FIXO COM GLASSMORPHISM
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#top" class="brand-logo" aria-label="Douran Imóveis Início">
+        Douran<span class="dot">.</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#imoveis" class="nav-link">Imóveis</a></li>
+          <li><a href="#alto-padrao" class="nav-link">Private Collection</a></li>
+          <li><a href="#bairros" class="nav-link">Bairros Nobres</a></li>
+          <li><a href="#financiar" class="nav-link">Financiamento</a></li>
+          <li><a href="#sobre" class="nav-link">Por Que a Douran</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Botão Drawer de Favoritos -->
+        <button type="button" class="btn-header-fav favorites-drawer-trigger" aria-label="Abrir imóveis favoritados" title="Imóveis Salvos">
+          <i data-lucide="heart"></i>
+          <span class="fav-count-badge">0</span>
+        </button>
+
+        <a href="#contato" class="btn btn-primary nav-cta">
+          <i data-lucide="phone"></i>
+          <span>Falar com Consultor</span>
+        </a>
+
+        <!-- Botão Menu Mobile -->
+        <button type="button" class="mobile-menu-trigger" id="mobile-menu-btn" aria-label="Abrir menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION COM EFEITO SKYLINE PARTICLES & BUSCA RÁPIDA
+       ========================================================================== -->
+  <main id="top">
+    <section class="hero-section">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="container hero-content">
+        <div class="hero-badge-tag">
+          <i data-lucide="sparkles"></i>
+          <span>Curadoria Imobiliária Exclusiva em Manaus</span>
+        </div>
+
+        <h1 class="hero-main-title">
+          Do primeiro lar ao <span class="gold-accent">alto padrão</span>.
+        </h1>
+
+        <p class="hero-subtitle">
+          Imóveis de R$ 150 mil a mansões beira-rio. Faça o tour virtual 360°, conheça cada cômodo em detalhes e realize o melhor investimento da sua vida.
+        </p>
+
+        <!-- Console de Busca no Hero -->
+        <div class="hero-search-console">
+          <div class="search-fields-grid">
+            <div class="search-field">
+              <label for="hero-filter-purpose">Finalidade</label>
+              <select id="hero-filter-purpose">
+                <option value="">Comprar ou Alugar</option>
+                <option value="Comprar">Comprar</option>
+                <option value="Alugar">Alugar</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label for="hero-filter-type">Tipo de Imóvel</label>
+              <select id="hero-filter-type">
+                <option value="">Todos os Tipos</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Casa">Casa</option>
+                <option value="Cobertura">Cobertura</option>
+                <option value="Terreno">Terreno</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label for="hero-filter-neighborhood">Localização</label>
+              <select id="hero-filter-neighborhood">
+                <option value="">Todos os Bairros</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label>Faixa Desejada</label>
+              <select id="hero-filter-budget">
+                <option value="">Qualquer Valor</option>
+                <option value="300000">Até R$ 300 mil</option>
+                <option value="1000000">R$ 300 mil a R$ 1 mi</option>
+                <option value="3000000">R$ 1 mi a R$ 3 mi</option>
+                <option value="plus">Acima de R$ 3 mi</option>
+              </select>
+            </div>
+
+            <button type="button" class="btn btn-gold btn-lg" id="hero-search-btn">
+              <i data-lucide="search"></i>
+              <span>Buscar Imóveis</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FAIXAS DE VALOR INTERATIVAS (PRICE BANDS)
+         ========================================================================== -->
+    <div class="container price-bands-wrap">
+      <div class="price-bands-grid" id="price-bands-container" role="group" aria-label="Filtrar por Faixa de Valor">
+        <!-- Renderizado dinamicamente via js/filters.js -->
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         TRUST & STATS STRIP (MÉTRICAS DE AUTORIDADE)
+         ========================================================================== -->
+    <section class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-target="280" data-prefix="R$ " data-suffix="M+">R$ 280M+</span>
+            <span class="stat-label">Em Imóveis Transacionados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="1250" data-prefix="+" data-suffix="">+1.250</span>
+            <span class="stat-label">Famílias Satisfeitas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="99" data-prefix="" data-suffix="%">99%</span>
+            <span class="stat-label">Aprovação de Financiamento Bancário</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="15" data-prefix="" data-suffix=" Anos">15 Anos</span>
+            <span class="stat-label">De Tradição com CRECI Ativo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VITRINE DE IMÓVEIS & FILTROS AVANÇADOS
+         ========================================================================== -->
+    <section class="section" id="imoveis">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i data-lucide="home"></i> Catálogo Exclusivo</span>
+          <h2>Imóveis Disponíveis</h2>
+          <p class="section-desc">
+            Selecione por bairro, tipo ou faixa de preço. Clique em <strong>Tour 360°</strong> para entrar e caminhar pelos cômodos virtualmente.
+          </p>
+        </div>
+
+        <!-- Barra de Filtros Multifuncional -->
+        <div class="filter-bar-wrap">
+          <div class="filter-controls-row">
+            <div class="filter-search-box">
+              <i data-lucide="search"></i>
+              <input type="text" id="filter-search" placeholder="Buscar por condomínio, bairro ou características..." />
+            </div>
+
+            <div class="filter-item">
+              <select id="filter-purpose">
+                <option value="">Finalidade (Todas)</option>
+                <option value="Comprar">Comprar</option>
+                <option value="Alugar">Alugar</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <select id="filter-type">
+                <option value="">Tipo (Todos)</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Casa">Casa</option>
+                <option value="Cobertura">Cobertura</option>
+                <option value="Terreno">Terreno</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <select id="filter-neighborhood">
+                <option value="">Bairro (Todos)</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <select id="filter-bedrooms">
+                <option value="0">Quartos (Todos)</option>
+                <option value="1">1+ Quartos</option>
+                <option value="2">2+ Quartos</option>
+                <option value="3">3+ Quartos</option>
+                <option value="4">4+ Quartos</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <select id="filter-sort">
+                <option value="relevance">Mais Relevantes</option>
+                <option value="price-asc">Menor Preço</option>
+                <option value="price-desc">Maior Preço</option>
+                <option value="area-desc">Maior Metragem (m²)</option>
+              </select>
+            </div>
+
+            <label class="filter-toggle-switch">
+              <input type="checkbox" id="filter-tour-only" />
+              <span>Apenas com Tour 360°</span>
+            </label>
+          </div>
+
+          <div class="filter-meta-bar">
+            <span id="properties-count">Carregando imóveis...</span>
+            <button type="button" class="btn-reset-filters" id="btn-reset-filters">
+              <i data-lucide="rotate-ccw"></i> Limpar Filtros
+            </button>
+          </div>
+        </div>
+
+        <!-- Grade de Cards de Imóveis -->
+        <div class="properties-grid" id="properties-grid">
+          <!-- Renderizado dinamicamente via js/filters.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PRIVATE COLLECTION / ALTO PADRÃO (ACIMA DE R$ 3 MILHÕES)
+         ========================================================================== -->
+    <section class="section section-dark" id="alto-padrao">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="background: rgba(197, 160, 89, 0.2);"><i data-lucide="crown"></i> Private Broker</span>
+          <h2>Private Collection • Alto Padrão</h2>
+          <p class="section-desc">
+            Propriedades cinematográficas em Ponta Negra e Adrianópolis. Mansões com pier náutico, coberturas duplex e residências com assinatura arquitetônica. Atendimento estritamente confidencial.
+          </p>
+        </div>
+
+        <div class="properties-grid" id="alto-padrao-grid">
+          <!-- Renderizado dinamicamente com estilo Luxury Dark -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         BAIRROS NOBRES DE MANAUS (GUIA DE LOCALIZAÇÃO & LIFESTYLE)
+         ========================================================================== -->
+    <section class="section" id="bairros">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag"><i data-lucide="map"></i> Localizações Nobres</span>
+          <h2>As Melhores Regiões de Manaus</h2>
+          <p class="section-desc">
+            Encontre o bairro que combina com o seu estilo de vida: da brisa e sofisticação da Ponta Negra à tradição cosmopolita do Adrianópolis.
+          </p>
+        </div>
+
+        <div class="neighborhoods-grid">
+          <!-- Ponta Negra -->
+          <div class="neighborhood-card">
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Ponta Negra Manaus" class="neighborhood-bg-img" loading="lazy" />
+            <div class="neighborhood-overlay">
+              <span class="neighborhood-tag">Orla & Alto Padrão</span>
+              <h3 class="neighborhood-title">Ponta Negra</h3>
+              <p class="neighborhood-lifestyle">O metro quadrado mais nobre de Manaus, com vista deslumbrante do Rio Negro e condomínios de luxo.</p>
+              <span class="neighborhood-count"><i data-lucide="check"></i> 18 imóveis disponíveis</span>
+            </div>
+          </div>
+
+          <!-- Adrianópolis -->
+          <div class="neighborhood-card">
+            <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&q=80" alt="Adrianópolis Manaus" class="neighborhood-bg-img" loading="lazy" />
+            <div class="neighborhood-overlay">
+              <span class="neighborhood-tag">Tradição & Grife</span>
+              <h3 class="neighborhood-title">Adrianópolis</h3>
+              <p class="neighborhood-lifestyle">Polo de alta gastronomia, escolas conceituadas e os edifícios mais clássicos e seguros da capital.</p>
+              <span class="neighborhood-count"><i data-lucide="check"></i> 24 imóveis disponíveis</span>
+            </div>
+          </div>
+
+          <!-- Vieiralves -->
+          <div class="neighborhood-card">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Vieiralves Manaus" class="neighborhood-bg-img" loading="lazy" />
+            <div class="neighborhood-overlay">
+              <span class="neighborhood-tag">Trendy & Mobilidade</span>
+              <h3 class="neighborhood-title">Vieiralves</h3>
+              <p class="neighborhood-lifestyle">Vida urbana dinâmica, boutiques, clínicas e proximidade às principais avenidas corporativas.</p>
+              <span class="neighborhood-count"><i data-lucide="check"></i> 15 imóveis disponíveis</span>
+            </div>
+          </div>
+
+          <!-- Tarumã -->
+          <div class="neighborhood-card">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Tarumã Manaus" class="neighborhood-bg-img" loading="lazy" />
+            <div class="neighborhood-overlay">
+              <span class="neighborhood-tag">Espaço & Natureza</span>
+              <h3 class="neighborhood-title">Tarumã</h3>
+              <p class="neighborhood-lifestyle">Casas espaçosas em condomínios fechados arborizados, marinas e contato direto com a natureza.</p>
+              <span class="neighborhood-count"><i data-lucide="check"></i> 12 imóveis disponíveis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SIMULADOR DE FINANCIAMENTO BANCÁRIO AVANÇADO
+         ========================================================================== -->
+    <section class="section" id="financiar" style="background: var(--bg-surface-alt);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i data-lucide="calculator"></i> Crédito Imobiliário Inteligente</span>
+          <h2>Simule Seu Financiamento</h2>
+          <p class="section-desc">
+            Calcule o valor das parcelas, entrada e amortização com taxas de balcão atualizadas da Caixa, Itaú, Santander e Bradesco.
+          </p>
+        </div>
+
+        <div class="simulator-box">
+          <div class="sim-grid">
+            <!-- Coluna de Controles Interativos -->
+            <div class="sim-controls-col">
+              <!-- Slider: Valor do Imóvel -->
+              <div class="sim-field-group">
+                <div class="sim-field-header">
+                  <span class="sim-field-label">Valor do Imóvel</span>
+                  <output class="sim-field-val" id="sim-val-out">R$ 350.000</output>
+                </div>
+                <input type="range" class="sim-range-slider" id="sim-val-range" min="150000" max="10000000" step="10000" value="350000" />
+              </div>
+
+              <!-- Slider: Entrada -->
+              <div class="sim-field-group">
+                <div class="sim-field-header">
+                  <span class="sim-field-label">Entrada (<span id="sim-down-out">20%</span>)</span>
+                  <output class="sim-field-val" id="sim-down-amount">R$ 70.000</output>
+                </div>
+                <input type="range" class="sim-range-slider" id="sim-down-range" min="10" max="80" step="5" value="20" />
+                <div class="quick-down-pills">
+                  <button type="button" class="quick-down-btn" data-pct="10">10%</button>
+                  <button type="button" class="quick-down-btn active" data-pct="20">20% (Recomendado)</button>
+                  <button type="button" class="quick-down-btn" data-pct="30">30%</button>
+                  <button type="button" class="quick-down-btn" data-pct="50">50%</button>
+                </div>
+              </div>
+
+              <!-- Slider: Prazo -->
+              <div class="sim-field-group">
+                <div class="sim-field-header">
+                  <span class="sim-field-label">Prazo de Pagamento</span>
+                  <output class="sim-field-val" id="sim-term-out">30 anos (360x)</output>
+                </div>
+                <input type="range" class="sim-range-slider" id="sim-term-range" min="5" max="35" step="1" value="30" />
+              </div>
+
+              <!-- Sistema de Amortização -->
+              <div class="sim-field-group">
+                <span class="sim-field-label">Sistema de Amortização</span>
+                <div class="sim-amortization-tabs">
+                  <button type="button" class="tab-amort active" id="btn-system-sac">
+                    <strong>Tabela SAC</strong>
+                    <small style="display:block; opacity:0.8;">Parcelas decrescentes (Paga menos juros)</small>
+                  </button>
+                  <button type="button" class="tab-amort" id="btn-system-price">
+                    <strong>Tabela PRICE</strong>
+                    <small style="display:block; opacity:0.8;">Parcelas fixas (Começa mais baixa)</small>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coluna de Resultados Calculados -->
+            <div class="sim-result-card">
+              <span class="sim-result-badge" id="sim-badge-type">Tabela SAC (Parcelas Decrescentes)</span>
+              
+              <small style="color: #CADAD7; display:block;">1ª Parcela Estimada</small>
+              <div class="sim-installment-big" id="sim-res-first">R$ 2.410/mês</div>
+
+              <div class="sim-details-list">
+                <div class="sim-detail-row" id="sim-res-last-wrap">
+                  <span>Última Parcela Estimada:</span>
+                  <strong id="sim-res-last">R$ 785/mês</strong>
+                </div>
+                <div class="sim-detail-row">
+                  <span>Valor Financiado:</span>
+                  <strong id="sim-res-financed">R$ 280.000</strong>
+                </div>
+                <div class="sim-detail-row">
+                  <span>Renda Familiar Recomendada:</span>
+                  <strong id="sim-res-income">R$ 8.033</strong>
+                </div>
+              </div>
+
+              <p class="sim-note-text" id="sim-note-text">
+                Estimativa baseada em taxas de ~9.8% a.a. Você pode compor renda com cônjuge ou familiares e utilizar seu saldo de FGTS.
+              </p>
+
+              <a href="#" target="_blank" class="btn btn-gold btn-full btn-lg" id="sim-cta-whatsapp">
+                <i data-lucide="badge-percent"></i>
+                <span>Aprovar Financiamento com Especialista</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         POR QUE COMPRAR COM A DOURAN & DEPOIMENTOS
+         ========================================================================== -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag"><i data-lucide="shield-check"></i> Segurança & Transparência</span>
+          <h2>Compra e Aluguel Sem Burocracia</h2>
+          <p class="section-desc">
+            Eliminamos surpresas, corretores insistentes e papéis desnecessários. Cuidamos de cada detalhe com precisão cirúrgica.
+          </p>
+        </div>
+
+        <div class="testimonials-grid" style="margin-bottom: 4rem;">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+            </div>
+            <p class="testimonial-quote">
+              "Comprei meu primeiro apartamento pelo Minha Casa Minha Vida e o suporte foi impecável. Entendi cada etapa do financiamento e a liberação na Caixa levou menos de 48h."
+            </p>
+            <div class="testimonial-author-row">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Mariana S." class="testimonial-avatar" />
+              <div class="testimonial-author-info">
+                <h4>Mariana Silveira</h4>
+                <span>Compradora • Parque 10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+            </div>
+            <p class="testimonial-quote">
+              "Fiz o tour virtual da cobertura, agendei a visita exclusiva e fechei na mesma semana com discrição e assessoria jurídica completa. Serviço no nível dos melhores de São Paulo."
+            </p>
+            <div class="testimonial-author-row">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Dr. Roberto M." class="testimonial-avatar" />
+              <div class="testimonial-author-info">
+                <h4>Dr. Roberto Magalhães</h4>
+                <span>Investidor & Médico • Adrianópolis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+              <i data-lucide="star" fill="currentColor"></i>
+            </div>
+            <p class="testimonial-quote">
+              "Procuramos casa em condomínio por meses sem sucesso com outras imobiliárias. Na Douran, a curadoria nos apresentou a casa exata para nossos filhos já na segunda visita!"
+            </p>
+            <div class="testimonial-author-row">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Fernanda e Carlos" class="testimonial-avatar" />
+              <div class="testimonial-author-info">
+                <h4>Fernanda & Carlos Leitão</h4>
+                <span>Família • Ponta Negra</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FORMULÁRIO DE CONTATO & CAPTAÇÃO DE CLIENTES
+         ========================================================================== -->
+    <section class="section" id="contato" style="background: var(--bg-surface);">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Coluna de Informações e Benefícios -->
+          <div class="contact-info-col">
+            <span class="section-tag"><i data-lucide="message-square"></i> Atendimento Sob Medida</span>
+            <h2>Conte-nos o que você procura</h2>
+            <p>
+              Preencha o formulário e um especialista dedicado ao seu perfil entrará em contato via WhatsApp com um dossiê das melhores opções dentro ou fora da nossa vitrine.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+              <div style="display: flex; gap: 0.8rem; align-items: center;">
+                <i data-lucide="check-circle" style="color: #2EC4B6;"></i>
+                <span>Visitas com transporte privativo ou agendadas sob medida</span>
+              </div>
+              <div style="display: flex; gap: 0.8rem; align-items: center;">
+                <i data-lucide="check-circle" style="color: #2EC4B6;"></i>
+                <span>Análise de crédito e aprovação bancária sem custo</span>
+              </div>
+              <div style="display: flex; gap: 0.8rem; align-items: center;">
+                <i data-lucide="check-circle" style="color: #2EC4B6;"></i>
+                <span>Sigilo e confidencialidade absolutos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caixa do Formulário de Lead -->
+          <div class="contact-card-box">
+            <form id="lead-contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="lead-nome">Seu Nome Completo *</label>
+                <input type="text" id="lead-nome" name="nome" placeholder="Ex: João da Silva" required />
+              </div>
+
+              <div class="form-group">
+                <label for="lead-telefone">WhatsApp / Telefone *</label>
+                <input type="tel" id="lead-telefone" name="telefone" placeholder="(92) 99999-9999" required />
+              </div>
+
+              <div class="form-group">
+                <label for="lead-interesse">Objetivo Principal</label>
+                <select id="lead-interesse" name="interesse">
+                  <option value="Quero Comprar Meu Imóvel">Quero Comprar Meu Imóvel</option>
+                  <option value="Quero Alugar um Imóvel">Quero Alugar um Imóvel</option>
+                  <option value="Quero Vender/Avaliar Meu Imóvel">Quero Vender ou Avaliar Meu Imóvel</option>
+                  <option value="Atendimento Private & Alto Padrão">Atendimento Private & Alto Padrão</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-faixa">Faixa de Investimento</label>
+                <select id="lead-faixa" name="faixa">
+                  <option value="Até R$ 300 mil">Até R$ 300 mil (Subsídio / FGTS)</option>
+                  <option value="R$ 300 mil a R$ 1 Milhão">R$ 300 mil a R$ 1 Milhão</option>
+                  <option value="R$ 1 a R$ 3 Milhões">R$ 1 a R$ 3 Milhões (Premium)</option>
+                  <option value="Acima de R$ 3 Milhões">Acima de R$ 3 Milhões (Alto Padrão)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-mensagem">Bairro de Preferência e Detalhes</label>
+                <textarea id="lead-mensagem" name="mensagem" rows="3" placeholder="Ex: Procuro apartamento de 3 quartos com varanda no Adrianópolis..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-gold btn-lg btn-full" style="margin-top: 0.5rem;">
+                <i data-lucide="message-circle"></i>
+                <span>Enviar e Falar no WhatsApp</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ DO SITE (FOOTER)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <span class="footer-brand-logo">Douran<span style="color:var(--color-gold-primary)">.</span></span>
+          <p style="color: #9AB2AE; font-size: 0.95rem;">
+            A imobiliária de referência em Manaus. Conectando pessoas aos lares dos seus sonhos, com tecnologia 360°, inteligência de crédito e curadoria imobiliária de alto padrão.
+          </p>
+          <span style="font-size: 0.85rem; color: var(--color-gold-light);">CRECI 00000-J • Conselho Regional de Corretores de Imóveis</span>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="#imoveis">Vitrine de Imóveis</a></li>
+            <li><a href="#alto-padrao">Private Collection</a></li>
+            <li><a href="#bairros">Bairros de Manaus</a></li>
+            <li><a href="#financiar">Simulador Bancário</a></li>
+            <li><a href="#sobre">Nossa História</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Bairros Atendidos</h4>
+          <ul class="footer-links">
+            <li><a href="#imoveis">Ponta Negra</a></li>
+            <li><a href="#imoveis">Adrianópolis</a></li>
+            <li><a href="#imoveis">Vieiralves</a></li>
+            <li><a href="#imoveis">Parque 10</a></li>
+            <li><a href="#imoveis">Tarumã</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atendimento VIP</h4>
+          <ul class="footer-links">
+            <li><span>Segunda a Sábado: 08h às 19h</span></li>
+            <li><span>Domingo: Plantão com Agendamento</span></li>
+            <li><a href="tel:+5592999999999">(92) 99999-9999</a></li>
+            <li><a href="mailto:contato@douranimoveis.com.br">contato@douranimoveis.com.br</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>© 2026 Douran Imóveis. Todos os direitos reservados. Imagens e plantas ilustrativas sujeitas à confirmação de disponibilidade.</span>
+        <span>Desenvolvido com excelência imobiliária</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL 1: DETALHES COMPLETOS DO IMÓVEL (DOSSIÊ VIP)
+       ========================================================================== -->
+  <dialog id="property-modal-dialog" aria-labelledby="modal-property-title">
+    <div class="modal-header-bar">
+      <span class="section-tag" style="padding: 0.3rem 0.8rem; font-size: 0.78rem;">Ficha Técnica do Imóvel</span>
+      <button type="button" class="modal-close-btn" id="property-modal-close" aria-label="Fechar Modal">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="modal-scrollable-body" id="property-modal-body">
+      <!-- Injetado dinamicamente via js/main.js -->
+    </div>
+  </dialog>
+
+  <!-- ==========================================================================
+       MODAL 2: TOUR VIRTUAL 360° INTERATIVO
+       ========================================================================== -->
+  <dialog id="tour-dialog" aria-labelledby="tour-title">
+    <div class="tour-header-bar">
+      <div class="tour-title-wrap">
+        <h3 id="tour-title">Tour Virtual 360°</h3>
+        <span id="tour-subtitle">Arraste para os lados para explorar o ambiente</span>
+      </div>
+      <button type="button" class="modal-close-btn" id="tour-close-btn" aria-label="Fechar Tour" style="background: #143632; color: #FFF;">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <!-- Visor Panorâmico Widescreen com Hotspots -->
+    <div class="tour-pano-viewport" id="tour-pano" tabindex="0" aria-label="Visor Panorâmico 360°">
+      <!-- Injetado dinamicamente via js/tour.js -->
+    </div>
+
+    <!-- Barra Inferior de Navegação entre Cômodos -->
+    <div class="tour-bottom-bar">
+      <div class="tour-rooms-nav" id="tour-rooms-nav">
+        <!-- Botões de Cômodos (Sala, Cozinha, Suíte, Varanda, Piscina) -->
+      </div>
+
+      <div style="display: flex; gap: 0.8rem; align-items: center;">
+        <button type="button" class="btn btn-outline-gold" id="tour-toggle-drift">
+          <i data-lucide="pause"></i> Pausar Giro
+        </button>
+        <a href="#" target="_blank" class="btn btn-gold" id="tour-schedule-btn">
+          <i data-lucide="calendar"></i> Agendar Visita Presencial
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ==========================================================================
+       DRAWER LATERAL: IMÓVEIS FAVORITOS
+       ========================================================================== -->
+  <div class="favorites-drawer-backdrop" id="favorites-backdrop"></div>
+  <aside class="favorites-drawer" id="favorites-drawer">
+    <div class="favorites-drawer-header">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <i data-lucide="heart" style="color: #E63946;"></i>
+        <h3 style="font-size: 1.25rem;">Imóveis Salvos</h3>
+      </div>
+      <button type="button" class="modal-close-btn" id="favorites-drawer-close">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="favorites-drawer-list" id="favorites-drawer-list">
+      <!-- Itens favoritados inseridos via js/filters.js -->
+    </div>
+
+    <div class="favorites-drawer-footer">
+      <div class="fav-total-row">
+        <span>Total Estimado:</span>
+        <strong id="favorites-drawer-total">R$ 0</strong>
+      </div>
+      <a href="#" target="_blank" class="btn btn-gold btn-full btn-lg" id="favorites-drawer-wa">
+        <i data-lucide="message-circle"></i>
+        <span>Consultar Favoritos no WhatsApp</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       DRAWER DE NAVEGAÇÃO MOBILE
+       ========================================================================== -->
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-header">
+      <span class="brand-logo">Douran<span class="dot">.</span></span>
+      <button type="button" class="modal-close-btn" id="mobile-nav-close">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="#imoveis">Imóveis</a></li>
+      <li><a href="#alto-padrao">Private Collection</a></li>
+      <li><a href="#bairros">Bairros Nobres</a></li>
+      <li><a href="#financiar">Financiamento</a></li>
+      <li><a href="#sobre">Por Que a Douran</a></li>
+      <li><a href="#contato">Falar Conosco</a></li>
+    </ul>
+
+    <div class="mobile-nav-footer">
+      <button type="button" class="btn btn-outline favorites-drawer-trigger btn-full">
+        <i data-lucide="heart"></i> Ver Favoritos Salvos
+      </button>
+      <a href="#contato" class="btn btn-primary btn-full">
+        <i data-lucide="phone"></i> Falar com Corretor
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       WHATSAPP CONCIERGE FLUTUANTE
+       ========================================================================== -->
+  <div class="wa-concierge-widget">
+    <!-- Caixa Expansível de Chat Rápido -->
+    <div class="wa-concierge-card" id="wa-concierge-card">
+      <div class="wa-card-header">
+        <div class="wa-card-agent">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Consultora Douran" class="wa-agent-avatar" />
+          <div>
+            <strong style="font-size: 0.95rem; display:block;">Juliana Mendes</strong>
+            <small style="color: #E0F2E9; font-size: 0.75rem;">Consultora Online • Douran</small>
+          </div>
+        </div>
+        <button type="button" id="wa-concierge-close" style="color:#FFF;"><i data-lucide="x"></i></button>
+      </div>
+
+      <div class="wa-card-body">
+        <div class="wa-card-bubble">
+          Olá! Bem-vindo à Douran. Como posso te ajudar a encontrar seu imóvel ideal hoje?
+        </div>
+
+        <button type="button" class="wa-quick-prompt" data-prompt="Olá Juliana! Gostaria de agendar uma visita presencial a um imóvel.">
+          📅 Quero agendar uma visita
+        </button>
+        <button type="button" class="wa-quick-prompt" data-prompt="Olá! Gostaria de fazer uma simulação de financiamento bancário para aprovar meu crédito.">
+          💳 Quero simular financiamento
+        </button>
+        <button type="button" class="wa-quick-prompt" data-prompt="Olá! Gostaria de atendimento exclusivo para imóveis de Alto Padrão (Ponta Negra / Adrianópolis).">
+          👑 Falar com Corretor de Alto Padrão
+        </button>
+        <button type="button" class="wa-quick-prompt" data-prompt="Olá! Tenho um imóvel em Manaus e gostaria de avaliar ou colocar para vender com vocês.">
+          🏠 Quero vender meu imóvel
+        </button>
+      </div>
+    </div>
+
+    <!-- Botão Redondo com Notificação Pulsante -->
+    <button type="button" class="wa-concierge-toggle" id="wa-concierge-toggle" aria-label="Abrir WhatsApp Concierge">
+      <span class="wa-notification-dot"></span>
+      <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+    </button>
+  </div>
+
+  <!-- Container de Toasts Dinâmicos -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts Organizados da Aplicação -->
+  <script src="js/data.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/tour.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

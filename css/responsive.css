@@ -1,0 +1,207 @@
+/**
+ * Douran Imóveis - Design Responsivo Mobile & Tablet
+ */
+
+/* Telas Médias e Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .search-fields-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-fields-grid .btn {
+    grid-column: 1 / -1;
+  }
+
+  .price-bands-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sim-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .modal-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+}
+
+/* Tablets Pequenos e Celulares (max-width: 768px) */
+@media (max-width: 768px) {
+  .site-header {
+    height: 70px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .mobile-menu-trigger {
+    display: flex;
+  }
+
+  .hero-section {
+    padding: 7rem 0 3.5rem;
+    min-height: auto;
+  }
+
+  .hero-main-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-search-console {
+    padding: 1.2rem;
+  }
+
+  .search-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+  }
+
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .price-bands-wrap {
+    margin-top: 1rem;
+  }
+
+  .price-bands-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-search-box,
+  .filter-item {
+    flex: 1 1 100%;
+  }
+
+  .simulator-box {
+    padding: 1.5rem;
+  }
+
+  .contact-card-box {
+    padding: 1.5rem;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .wa-concierge-widget {
+    bottom: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .wa-concierge-card {
+    width: 290px;
+  }
+
+  .tour-bottom-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tour-rooms-nav {
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+  }
+
+  .modal-scrollable-body {
+    padding: 1.2rem;
+  }
+}
+
+/* Drawer de Navegação Mobile */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: min(320px, 85vw);
+  height: 100vh;
+  background: var(--bg-surface);
+  box-shadow: 15px 0 40px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  transition: left var(--transition-normal);
+}
+
+.mobile-nav-drawer.open {
+  left: 0;
+}
+
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  list-style: none;
+}
+
+.mobile-nav-links a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.mobile-nav-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -1,0 +1,63 @@
+/**
+ * Douran Imóveis - Design Tokens & Variáveis
+ * Paleta refinada: Verde Esmeralda Obsidiana & Ouro Champagne
+ */
+
+:root {
+  /* Cores Principais - Identidade Visual de Luxo */
+  --color-brand-dark: #071716;       /* Fundo escuro luxuoso e footer */
+  --color-brand-emerald: #0D2E2B;    /* Verde esmeralda profundo de destaque */
+  --color-brand-forest: #144540;     /* Tom médio de transição */
+  --color-brand-light: #EBF3F1;      /* Verde sutil para fundos suaves */
+
+  /* Dourado Champagne & Bronze Nobre */
+  --color-gold-primary: #C5A059;     /* Dourado champagne equilibrado */
+  --color-gold-light: #E5C784;       /* Dourado brilhante para hovers e detalhes */
+  --color-gold-dark: #9D7C36;        /* Dourado encorpado para textos */
+  --color-gold-glow: rgba(197, 160, 89, 0.25);
+
+  /* Superfícies e Neutros */
+  --bg-body: #F7FAF9;               /* Fundo geral da página claro e sofisticado */
+  --bg-surface: #FFFFFF;            /* Cards e painéis brancos */
+  --bg-surface-alt: #F0F5F3;        /* Superfícies secundárias */
+  --bg-surface-dark: #0B1E1C;       /* Cards escuros da Private Collection */
+  --bg-glass: rgba(255, 255, 255, 0.82);
+  --bg-glass-dark: rgba(11, 30, 28, 0.88);
+
+  /* Tipografia & Contrastes */
+  --text-main: #132422;             /* Texto primário escuro legível */
+  --text-muted: #5B726F;            /* Texto secundário e legendas */
+  --text-light: #9CB2AE;            /* Legendas sobre fundo escuro */
+  --text-white: #FFFFFF;            /* Branco puro */
+  --text-gold: #C5A059;
+
+  /* Bordas e Linhas */
+  --border-subtle: #E2ECE9;
+  --border-strong: #CBDDD9;
+  --border-gold: rgba(197, 160, 89, 0.35);
+  --border-dark: #1C3834;
+
+  /* Fontes */
+  --font-serif: 'Playfair Display', 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Elevações e Sombras */
+  --shadow-sm: 0 2px 8px rgba(7, 23, 22, 0.04);
+  --shadow-md: 0 10px 24px rgba(7, 23, 22, 0.08);
+  --shadow-lg: 0 20px 45px rgba(7, 23, 22, 0.12);
+  --shadow-xl: 0 25px 60px rgba(7, 23, 22, 0.18);
+  --shadow-gold: 0 12px 30px rgba(197, 160, 89, 0.22);
+  --shadow-glow: 0 0 35px rgba(197, 160, 89, 0.3);
+
+  /* Raios de Arredondamento */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transições suaves */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
